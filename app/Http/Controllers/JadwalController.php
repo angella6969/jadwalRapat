@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\jadwal;
 use App\Http\Requests\StorejadwalRequest;
 use App\Http\Requests\UpdatejadwalRequest;
+use App\Models\url;
+use Illuminate\Support\Facades\DB;
 
 class JadwalController extends Controller
 {
@@ -13,7 +15,10 @@ class JadwalController extends Controller
      */
     public function index()
     {
-        //
+        // dd("a");
+        return view('jadwal.views', [
+            'jadwal' => jadwal::latest()->paginate(10),
+        ]);
     }
 
     /**
@@ -37,7 +42,16 @@ class JadwalController extends Controller
      */
     public function show(jadwal $jadwal)
     {
-        //
+        $url = url::all()->pluck('url');
+        dd($url);
+
+        if ($url) {
+            $videoId = $url->videoID;
+
+            return view('video', compact('videoId'));
+        } else {
+            return abort(404);
+        }
     }
 
     /**

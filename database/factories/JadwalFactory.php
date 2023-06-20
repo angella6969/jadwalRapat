@@ -17,7 +17,10 @@ class JadwalFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+           'tittle' => $this->faker->streetSuffix()  ,
+            'room' => $this->faker->randomElement(['Ruang Sisda', 'PPK PP', 'KPSDA', 'PPK BMN', 'PPK PSDA']) ,
+            'start' => $this->faker->dateTime(),
+            'end' => $this->faker->dateTime(),
         ];
     }
 }

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\JadwalController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +14,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/a', function () {
+    return view('jadwal/video');
 });
+
+Route::get('/', [JadwalController::class, 'index']);
+Route::get('/video/{id}', [JadwalController::class, 'show']);
