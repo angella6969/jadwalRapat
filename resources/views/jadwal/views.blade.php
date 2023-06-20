@@ -12,45 +12,59 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="{{ asset('css\myCss.css') }}">
+
+    <style>
+        body {
+            background-image: url("{{ asset('storage/images/Switzerland.png') }}"); 
+            background-size: cover;
+            /* Mengatur gambar agar sesuai dengan ukuran halaman */
+            background-position: center;
+            /* Posisi gambar di tengah-tengah halaman */
+        }
+    </style>
 </head>
 
 <body>
-    <header>
+    {{-- <header>
         {{-- <div class="row"> --}}
         {{-- <div class="col-md-2 mt-3 mb-3  " style="margin-left: 40px; "> --}}
-        <img src="{{ asset('storage\images\lgo.png') }}" alt="" width="900">
+        {{-- <img src="{{ asset('storage\images\lgo.png') }}" alt="" width="900"> --}}
         {{-- </div> --}}
         {{-- <div class="col-md-9 mt-3 mb-3">
                 <h1>KEMENTRIAN PEKERJAAN UMUM DAN PERUMAHAN RAKYAT <br> DIREKTORAT JENDRAL SUMBER DAYA AIR <BR> BALAI BESAR WILAYAH SUNGAI SERAYU OPAK</h1>
                     <H6> Jl.Solo Km.6 Yogyakarta 55281 Tlp.(0274) 489172 Fax.(0274) 489552 http://wwww.sda.pu.go.id/balai/bbwsserayuopak/</H6>
             </div> --}}
         {{-- </div> --}}
-    </header>
+    {{-- </header> --}} 
 
 </body>
 <div class="container">
-    <div class="d-flex justify-content-center mt-3">
-        <h1>Jadwal Rapat BBWS Serayu Opak</h1>
+    <div >
+        <h1 class="d-flex justify-content-center mt-3">Agenda Penggunaan Ruang Rapat</h1>
+        <h4 class="d-flex justify-content-center">BBWS Serayu Opak - Jl.Solo Km.6 Yogyakarta</h4>
     </div>
     <div class="table-responsive-sm">
         <table class="table table-striped table-sm">
             <thead>
                 <tr>
                     <th scope="col">No</th>
-                    <th scope="col">Nama</th>
                     <th scope="col">Ruang</th>
-                    <th scope="col">Mulai </th>
-                    <th scope="col">Selesai</th>
+                    <th scope="col">Tanggal</th>
+                    <th scope="col">Waktu</th>
+                    <th scope="col">Pembahasan</th>
+                    <th scope="col">Penyelenggara</th>
                 </tr>
             </thead>
             <tbody>
+                
                 @foreach ($jadwal as $item)
                     <tr>
                         <td>{{ $loop->iteration }}</td>
-                        <td> {{ $item->tittle }}</td>
                         <td> {{ $item->room }}</td>
-                        <td> {{ $item->start }}</td>
-                        <td> {{ $item->end }}</td>
+                        <td> {{ $item->days }}</td>
+                        <td> {{ $item->tittle }}</td>
+                        <td> {{ $item->time }}</td>
+                        <td> {{ $item->by }}</td>
                     </tr>
                 @endforeach
             </tbody>
@@ -73,15 +87,15 @@
         location.reload();
     }, 50000); // 5000 milidetik = 5 detik
 </script>
-<script>
+{{-- <script>
     // Fungsi untuk mengalihkan halaman
     function redirectPage() {
-      // Ganti URL sesuai dengan URL video yang ingin Anda tampilkan
-      window.location.href = "http://127.0.0.1:8000/a";
+        // Ganti URL sesuai dengan URL video yang ingin Anda tampilkan
+        window.location.href = "http://127.0.0.1:8000/a";
     }
-  
+
     // Mengalihkan halaman setiap 30 menit
     setInterval(redirectPage, 1000); // 30 menit * 60 detik * 1000 milidetik
-  </script>
+</script> --}}
 
 </html>
