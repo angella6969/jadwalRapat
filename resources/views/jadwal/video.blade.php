@@ -8,7 +8,9 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="{{ asset('css\myCss.css') }}">
+    <script src="https://www.youtube.com/iframe_api"></script>
     <title>Document</title>
+    @stack('scripts')
 </head>
 
 <body>
@@ -26,20 +28,68 @@
     integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
 </script>
 <script>
-    var videoId = 'Zjue--KG4vM';
+    var tag = document.createElement('script');
+    tag.src = "https://www.youtube.com/iframe_api";
+    var firstScriptTag = document.getElementsByTagName('script')[0];
+    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+    var videos = {!! $videoId !!}; // Array videoId
+    var player;
+    var currentIndex = 0;
+
+    function onYouTubeIframeAPIReady() {
+        player = new YT.Player('player', {
+            videoId: videos[currentIndex],
+            playerVars: {
+                autoplay: 1,
+                controls: 0,
+                modestbranding: 1,
+                rel: 0,
+                fs: 1
+            },
+            events: {
+                'onReady': onPlayerReady,
+                'onStateChange': onPlayerStateChange
+            }
+        });
+    }
+
+    function onPlayerReady(event) {
+        event.target.playVideo();
+    }
+
+    function onPlayerStateChange(event) {
+        if (event.data === YT.PlayerState.ENDED) {
+            currentIndex++;
+            if (currentIndex < videos.length) {
+                player.loadVideoById(videos[currentIndex]);
+            } else {
+                // Semua video telah diputar
+                window.location.href =
+                "http://127.0.0.1:8000/"; // Ganti dengan URL tujuan setelah selesai memutar semua video
+            }
+        }
+    }
+
+    onYouTubeIframeAPIReady();
+</script>
 
 
+
+
+
+{{-- <script>
     // Fungsi callback ketika API telah dimuat
     function onYouTubePlayerAPIReady() {
         // Buat objek pemutar video YouTube
         var player = new YT.Player('player', {
-            videoId: videoId,
+            videoId: '{{ $video->videoId }}', // Menggunakan nilai videoId yang diperoleh dari PHP
             playerVars: {
-                autoplay: 1, // Memulai pemutaran otomatis
-                controls: 0, // Menyembunyikan kontrol pemutar video
-                modestbranding: 1, // Menyembunyikan branding YouTube
-                rel: 0, // Menonaktifkan video terkait
-                fs: 1 // Aktifkan mode layar penuh
+                autoplay: 1,
+                controls: 0,
+                modestbranding: 1,
+                rel: 0,
+                fs: 1
             },
             events: {
                 'onReady': onPlayerReady,
@@ -61,13 +111,12 @@
     function onPlayerStateChange(event) {
         if (event.data === YT.PlayerState.ENDED) {
             // Mengembalikan ke halaman awal setelah video selesai diputar
-            window.location.href = "http://127.0.0.1:8000/";
+            window.location.href = "{{ url('/') }}";
         }
     }
 
     // Panggil fungsi untuk memulai inisialisasi pemutar video YouTube
     onYouTubePlayerAPIReady();
-</script>
-
+</script> --}}
 
 </html>

@@ -19,4 +19,4 @@ Route::get('/a', function () {
 });
 
 Route::get('/', [JadwalController::class, 'index']);
-Route::get('/video/{id}', [JadwalController::class, 'show']);
+Route::get('/video', [JadwalController::class, 'show']);

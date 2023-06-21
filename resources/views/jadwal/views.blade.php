@@ -41,35 +41,37 @@
 <div class="container">
     <div >
         <h1 class="d-flex justify-content-center mt-3">Agenda Penggunaan Ruang Rapat</h1>
-        <h4 class="d-flex justify-content-center">BBWS Serayu Opak - Jl.Solo Km.6 Yogyakarta</h4>
+        <h4 class="d-flex justify-content-center mb-3">BBWS Serayu Opak - Jl.Solo Km.6 Yogyakarta</h4>
     </div>
-    <div class="table-responsive-sm">
-        <table class="table table-striped table-sm">
+    <div class="table-responsive-sm mt-3">
+        <table class="table table-striped table-sm my-table table-bordered">
             <thead>
                 <tr>
-                    <th scope="col">No</th>
-                    <th scope="col">Ruang</th>
-                    <th scope="col">Tanggal</th>
-                    <th scope="col">Waktu</th>
-                    <th scope="col">Pembahasan</th>
-                    <th scope="col">Penyelenggara</th>
+                    <th scope="col" class="text-center" >No</th>
+                    <th scope="col" class="text-center" >Ruang</th>
+                    <th scope="col" class="text-center" >Hari</th>
+                    <th scope="col" class="text-center" >Tanggal</th>
+                    <th scope="col" class="text-center" >Waktu</th>
+                    <th scope="col" class="text-center" >Pembahasan</th>
+                    <th scope="col" class="text-center" >Penyelenggara</th>
                 </tr>
             </thead>
             <tbody>
                 
                 @foreach ($jadwal as $item)
                     <tr>
-                        <td>{{ $loop->iteration }}</td>
+                        <td class="text-center" >{{ $loop->iteration }}</td>
                         <td> {{ $item->room }}</td>
-                        <td> {{ $item->days }}</td>
-                        <td> {{ $item->tittle }}</td>
+                        <td> {{ Carbon\Carbon::parse($item->days)->translatedFormat('l') }}</td>
+                        <td> {{ Carbon\Carbon::parse($item->days)->translatedFormat('d F Y') }}</td>
                         <td> {{ $item->time }}</td>
+                        <td> {{ $item->tittle }}</td>
                         <td> {{ $item->by }}</td>
                     </tr>
                 @endforeach
             </tbody>
         </table>
-        <div class="mt-3">
+        <div class="position-relative mt-3">
             {{ $jadwal->links() }}
         </div>
     </div>
@@ -87,15 +89,15 @@
         location.reload();
     }, 50000); // 5000 milidetik = 5 detik
 </script>
-{{-- <script>
+<script>
     // Fungsi untuk mengalihkan halaman
     function redirectPage() {
         // Ganti URL sesuai dengan URL video yang ingin Anda tampilkan
-        window.location.href = "http://127.0.0.1:8000/a";
+        window.location.href = "http://127.0.0.1:8000/video";
     }
 
     // Mengalihkan halaman setiap 30 menit
     setInterval(redirectPage, 1000); // 30 menit * 60 detik * 1000 milidetik
-</script> --}}
+</script>
 
 </html>

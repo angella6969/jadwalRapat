@@ -6,6 +6,8 @@ use App\Models\jadwal;
 use App\Http\Requests\StorejadwalRequest;
 use App\Http\Requests\UpdatejadwalRequest;
 use App\Models\url;
+use Carbon\Carbon;
+
 use Illuminate\Support\Facades\DB;
 
 class JadwalController extends Controller
@@ -17,7 +19,8 @@ class JadwalController extends Controller
     {
         // dd("a");
         return view('jadwal.views', [
-            'jadwal' => jadwal::latest()->paginate(10),
+            'jadwal' => jadwal::select('room', 'days', 'time', 'tittle', 'by')->latest()->paginate(15),
+
         ]);
     }
 
@@ -43,15 +46,11 @@ class JadwalController extends Controller
     public function show(jadwal $jadwal)
     {
         $url = url::all()->pluck('url');
-        dd($url);
+        $videoId = $url;
+        // dd($videoId);
 
-        if ($url) {
-            $videoId = $url->videoID;
 
-            return view('video', compact('videoId'));
-        } else {
-            return abort(404);
-        }
+        return view('jadwal.video', compact('videoId'));
     }
 
     /**
