@@ -29,7 +29,7 @@ class JadwalController extends Controller
      */
     public function create()
     {
-        //
+       return view('form.createJadwal');
     }
 
     /**
@@ -37,7 +37,15 @@ class JadwalController extends Controller
      */
     public function store(StorejadwalRequest $request)
     {
-        //
+        $validatedData = $request->validate([
+            'tittle' => 'required',
+            'days' => 'required',
+            'by' => 'required',
+            'room' => 'required',
+            'time' => 'required',
+        ]);
+        jadwal::create($validatedData);
+        return redirect('/dashboard/create')->with('success', 'registration successfull! Please Contact the Admin to Activated your akun');
     }
 
     /**
@@ -47,8 +55,6 @@ class JadwalController extends Controller
     {
         $url = url::all()->pluck('url');
         $videoId = $url;
-        // dd($videoId);
-
 
         return view('jadwal.video', compact('videoId'));
     }

@@ -1,10 +1,16 @@
 header {
-    background-color: #ffffff;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: transparent;
     padding: 20px;
-    text-align: center;
-    /* text-decoration-color: #364778; */
+    transition: background-color 0.3s ease;
 }
-/* #FFC928; */
+
+header.scrolled {
+    background-color: #ffffff; 
+}
 
 h1 {
     margin: 0;
@@ -12,6 +18,5 @@ h1 {
 }
 
 .my-table {
-    background-color: #CB7EB0; /* Ganti dengan warna latar belakang yang Anda inginkan */
+    background-color: #cb7eb0; /* Ganti dengan warna latar belakang yang Anda inginkan */
 }
-

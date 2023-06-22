@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\url;
+use Google_Client;
+use Google_Service_YouTube;
 use App\Http\Requests\StoreurlRequest;
 use App\Http\Requests\UpdateurlRequest;
+
 
 class UrlController extends Controller
 {
@@ -21,8 +24,10 @@ class UrlController extends Controller
      */
     public function create()
     {
-        //
+        dd('ini create code');
     }
+
+
 
     /**
      * Store a newly created resource in storage.

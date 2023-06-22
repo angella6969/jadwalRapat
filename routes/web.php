@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\JadwalController;
+use App\Http\Controllers\UrlController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,3 +21,8 @@ Route::get('/a', function () {
 
 Route::get('/', [JadwalController::class, 'index']);
 Route::get('/video', [JadwalController::class, 'show']);
+Route::get('/dashboard/create', [JadwalController::class, 'create']);
+Route::post('/dashboard/create', [JadwalController::class, 'store']);
+
+Route::get('/dashboard/code', [UrlController::class, 'create']);
+
