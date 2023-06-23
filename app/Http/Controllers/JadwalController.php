@@ -67,12 +67,12 @@ class JadwalController extends Controller
     public function edit(jadwal $id)
     {
         $a = jadwal::findOrFail($id);
-        dd($a);
-        
+
         return view('form/editJadwal', [
-            'jadwal' => jadwal::findOrFail($id)
+            'jadwal' => $a
         ]);
     }
+
 
     /**
      * Update the specified resource in storage.
