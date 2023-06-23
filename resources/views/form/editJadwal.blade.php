@@ -13,7 +13,7 @@
         <div class="col-md-12 col-sm-6 mb-3">
             <label for="">Pembahasan</label>
             <input type="text" class="form-control @error('tittle') is-invalid @enderror" id="tittle" name="tittle"
-                placeholder="Agenda Pembahasan" value="{{ old('tittle') }}" required>
+                placeholder="Agenda Pembahasan" value="{{ old('tittle', $jadwal->tittle) }}" required>
             @error('tittle')
                 <div class="invalit-feedback">
                     {{ $message }}

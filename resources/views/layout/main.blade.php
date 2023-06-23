@@ -10,6 +10,7 @@
     <title>Document</title>
     @include('layout.link')
 </head>
+<script src="https://unpkg.com/feather-icons"></script>
 
 <body>
 

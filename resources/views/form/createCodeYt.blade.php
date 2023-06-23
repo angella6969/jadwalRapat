@@ -7,15 +7,15 @@
         <br>
 
         <form id="my-form" class="form-label-left input_mask" method="post" enctype="multipart/form-data"
-            action="/dashboard/create">
+            action="/dashboard/code">
             @csrf
 
 
             <div class="col-md-12 col-sm-6 mb-3">
                 <label for="">Code Youtube</label>
-                <input type="text" class="form-control @error('code') is-invalid @enderror" id="code"
-                    name="code" placeholder="Agenda Pembahasan" value="{{ old('code') }}" required>
-                @error('code')
+                <input type="text" class="form-control @error('url') is-invalid @enderror" id="url" name="url"
+                    placeholder="Code Video Youtube" value="{{ old('url') }}" required>
+                @error('url')
                     <div class="invalit-feedback">
                         {{ $message }}
                     </div>
@@ -28,7 +28,7 @@
         <div class="d-flex justify-content-center">
 
             {{-- Field Button Back --}}
-            <a class="btn btn-info" href="/events" role="button"
+            <a class="btn btn-info" href="/dashboard" role="button"
                 style="margin: 10px;   width: 150px;
                         height: 40px; ">Back</a>
             {{-- End Field Button Back --}}
@@ -52,4 +52,14 @@
     </form>
     </div>
     {{-- </div> --}}
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Kode Anda yang menggunakan iziToast
+            iziToast.success({
+                message: '{{ Session::get('success') }}',
+                position: 'topRight',
+            });
+        });
+    </script>
 @endsection

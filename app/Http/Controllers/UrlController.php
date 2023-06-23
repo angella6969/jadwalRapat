@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+// namespace App\Http\Requests;
+
 use App\Models\url;
 use Google_Client;
 use Google_Service_YouTube;
 use App\Http\Requests\StoreurlRequest;
 use App\Http\Requests\UpdateurlRequest;
-
+use Illuminate\Support\Facades\Validator;
 
 class UrlController extends Controller
 {
@@ -24,7 +26,7 @@ class UrlController extends Controller
      */
     public function create()
     {
-        dd('ini create code');
+        return view('form.createCodeYt');
     }
 
 
@@ -34,7 +36,26 @@ class UrlController extends Controller
      */
     public function store(StoreurlRequest $request)
     {
-        //
+
+        $thumbnailUrl = "https://img.youtube.com/vi/{$request->url}/maxresdefault.jpg";
+        $thumbnailSize = @getimagesize($thumbnailUrl);
+        // dd($request->url);
+
+        $validatedData = $request->validate([
+
+            'url' => 'required',
+        ]);
+
+        $thumbnailContent = @file_get_contents($thumbnailUrl);
+
+        if ($thumbnailContent !== false) {
+            // Thumbnail tersedia
+            url::create($validatedData);
+            return redirect('/dashboard')->with('success', 'Berhasil Menambahkan Daftar Video');
+        } else {
+            // Thumbnail tidak tersedia atau ada masalah lain
+            return redirect('/dashboard/code')->with('success', 'Code Tidak Valid');
+        }
     }
 
     /**

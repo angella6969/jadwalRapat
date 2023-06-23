@@ -19,7 +19,9 @@ class JadwalController extends Controller
     {
         // dd("a");
         return view('jadwal.views', [
-            'jadwal' => jadwal::select('room', 'days', 'time', 'tittle', 'by')->latest()->paginate(15),
+            'jadwal' => jadwal::select('room', 'days', 'time', 'tittle', 'by')
+                ->latest()
+                ->paginate(15),
 
         ]);
     }
@@ -29,7 +31,7 @@ class JadwalController extends Controller
      */
     public function create()
     {
-       return view('form.createJadwal');
+        return view('form.createJadwal');
     }
 
     /**
@@ -45,7 +47,7 @@ class JadwalController extends Controller
             'time' => 'required',
         ]);
         jadwal::create($validatedData);
-        return redirect('/dashboard/create')->with('success', 'registration successfull! Please Contact the Admin to Activated your akun');
+        return redirect('/dashboard')->with('success', 'Berhasil Menambahkan Agenda Rapat');
     }
 
     /**
@@ -62,9 +64,14 @@ class JadwalController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(jadwal $jadwal)
+    public function edit(jadwal $id)
     {
-        //
+        $a = jadwal::findOrFail($id);
+        dd($a);
+        
+        return view('form/editJadwal', [
+            'jadwal' => jadwal::findOrFail($id)
+        ]);
     }
 
     /**
