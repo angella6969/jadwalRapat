@@ -1,0 +1,22 @@
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: transparent;
+    padding: 20px;
+    transition: background-color 0.3s ease;
+}
+
+header.scrolled {
+    background-color: #ffffff; 
+}
+
+h1 {
+    margin: 0;
+    color: #000000;
+}
+
+.my-table {
+    background-color: #cb7eb0; /* Ganti dengan warna latar belakang yang Anda inginkan */
+}
