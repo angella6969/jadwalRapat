@@ -14,7 +14,7 @@
 
     <style>
         body {
-            background-image: url("{{ asset('storage/images/Switzerland.png') }}");
+            background-image: url("{{ asset('images/Switzerland.png') }}");
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
@@ -27,18 +27,18 @@
 
 
     <div class="container">
-        <div class="mt-3">
+        <div class="mt-3"><br>
             <div class="position-relative mt-3">
-                <img class="position-absolute top-0 start-0" src="{{ asset('storage/images/1 Logo BBWS SO -3D.png') }}"
+                <img class="position-absolute top-0 start-0" src="{{ asset('images/1 Logo BBWS SO -3D.png') }}"
                     alt="" width="200">
-                <img class="position-absolute top-0 end-0" src="{{ asset('storage/images/Logo_PUPR.png') }}"
-                    alt="" width="250">
+                <img class="position-absolute top-0 end-0" src="{{ asset('images/Logo_PUPR.png') }}" alt=""
+                    width="250">
             </div>
 
             <div class="table-responsive-sm mt-3">
                 <table class="table table-striped table-sm my-table table-bordered">
-                    <label for="" class="d-flex justify-content-center">
-                        <h1 class="">Agenda Penggunaan Ruang Rapat</h1>
+                    <label for="" class="d-flex justify-content-center"> <br>
+                        <h1 class="">Agenda Penggunaan Ruang Rapat <br></h1>
                     </label>
                     <thead>
                         <tr>
@@ -82,7 +82,7 @@
 
 <script>
     function redirectPage() {
-        window.location.href = "http://127.0.0.1:8000/video";
+        window.location.href = "http://192.168.99.24:8080/video";
     }
 
     setInterval(redirectPage, 10 * 1000);

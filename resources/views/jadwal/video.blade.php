@@ -64,12 +64,12 @@
             currentIndex++;
             if (currentIndex < videos.length) {
                 setTimeout(function() {
-                    window.location.href = "http://127.0.0.1:8000/";
+                    window.location.href = "http://192.168.99.24:8080";
                     localStorage.setItem("currentIndex", currentIndex.toString());
                 }, 0);
             } else {
                 setTimeout(function() {
-                    window.location.href = "http://127.0.0.1:8000/";
+                    window.location.href = "http://192.168.99.24:8080";
                     localStorage.removeItem("currentIndex");
                 },0);
             }

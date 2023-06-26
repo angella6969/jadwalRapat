@@ -80,7 +80,7 @@
                             <div>
                                 <a class="btn btn-link" href="#">
                                     <img class="img-thumbnail"
-                                        src=https://sisdainvapp.online/storage/images/LOGO%20SISDA.png
+                                        src={{ asset('images\LOGO_SISDA.png') }}
                                         alt="LOGO SISDA.png">
                                 </a>
                                 <p>Sistem Informasi Sumber Daya Air</p>
