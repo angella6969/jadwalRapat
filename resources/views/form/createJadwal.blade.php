@@ -30,16 +30,19 @@
             <option value="RR Wadaslintang">RR Wadaslintang</option>
             <option value="RR Kabalai">RR Kabalai</option>
             <option value="RR Progo">RR Progo</option>
+            <option value="RR Progo">RR Bribin</option>
         </select>
-        {{-- <input type="text" class="form-control @error('room') is-invalid @enderror" id="room" name="room"
-            placeholder="Agenda Ruang Rapat" value="{{ old('room') }}" required> --}}
-        {{-- @error('room')
-        <div class="invalit-feedback">
-            {{ $message }}
-        </div>
-        @enderror --}}
     </div>
     <div class="col-md-12 col-sm-6 mb-3">
+        <label for="">Time</label>
+        <select class="form-select" name="time" id="time">
+            <option selected>Open this select menu</option>
+            <option value="08.00 - 12.00">08.00 - 12.00</option>
+            <option value="12.30 - 16.00">12.30 - 16.00</option>
+            <option value="16.30 - 19.00">16.30 - 19.00</option>
+        </select>
+    </div>
+    {{-- <div class="col-md-12 col-sm-6 mb-3">
         <label for="">Time</label>
         <input type="text" class="form-control @error('time') is-invalid @enderror" id="time" name="time"
             placeholder="Agenda Acara ( ect: 09.00 - selesai )" value="{{ old('time') }}" required>
@@ -48,7 +51,7 @@
             {{ $message }}
         </div>
         @enderror
-    </div>
+    </div> --}}
     <div class="col-md-12 col-sm-6 mb-3">
         <label for="">Penyelenggara</label>
         <input type="text" class="form-control @error('by') is-invalid @enderror" id="by" name="by"

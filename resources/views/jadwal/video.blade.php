@@ -29,7 +29,56 @@
 </script>
 
 <script>
-    var videos = {!! $videoId !!}; 
+    // var videos = {!! $videoId !!}; 
+    // var player;
+    // var currentIndex = 0;
+
+    // function onYouTubeIframeAPIReady() {
+    //     var storedIndex = localStorage.getItem("currentIndex");
+    //     if (storedIndex !== null) {
+    //         currentIndex = parseInt(storedIndex);
+    //     }
+
+    //     player = new YT.Player('player', {
+    //         videoId: videos[currentIndex],
+    //         playerVars: {
+    //             autoplay: 1,
+    //             controls: 0,
+    //             modestbranding: 1,
+    //             rel: 0,
+    //             fs: 1
+    //         },
+    //         events: {
+    //             'onReady': onPlayerReady,
+    //             'onStateChange': onPlayerStateChange
+    //         }
+    //     });
+    // }
+
+    // function onPlayerReady(event) {
+    //     event.target.playVideo();
+    // }
+
+    // function onPlayerStateChange(event) {
+    //     if (event.data === YT.PlayerState.ENDED) {
+    //         currentIndex++;
+    //         if (currentIndex < videos.length) {
+    //             setTimeout(function() {
+    //                 window.location.href = "http://192.168.99.24:8080";
+    //                 localStorage.setItem("currentIndex", currentIndex.toString());
+    //             }, 0);
+    //         } else {
+    //             setTimeout(function() {
+    //                 window.location.href = "http://192.168.99.24:8080";
+    //                 localStorage.removeItem("currentIndex");
+    //             },0);
+    //         }
+    //     }
+    // }
+
+    // onYouTubeIframeAPIReady();
+
+    var videos = {!! $videoId !!};
     var player;
     var currentIndex = 0;
 
@@ -50,7 +99,8 @@
             },
             events: {
                 'onReady': onPlayerReady,
-                'onStateChange': onPlayerStateChange
+                'onStateChange': onPlayerStateChange,
+                'onError': onPlayerError
             }
         });
     }
@@ -71,11 +121,27 @@
                 setTimeout(function() {
                     window.location.href = "http://192.168.99.24:8080";
                     localStorage.removeItem("currentIndex");
-                },0);
+                }, 0);
             }
+        }
+    }
+
+    function onPlayerError(event) {
+        currentIndex++;
+        if (currentIndex < videos.length) { 
+            setTimeout(function() {
+                player.loadVideoById(videos[currentIndex]);
+                localStorage.setItem("currentIndex", currentIndex.toString());
+            }, 0);
+        } else {
+            setTimeout(function() {
+                window.location.href = "http://192.168.99.24:8080";
+                localStorage.removeItem("currentIndex");
+            }, 0);
         }
     }
 
     onYouTubeIframeAPIReady();
 </script>
+
 </html>

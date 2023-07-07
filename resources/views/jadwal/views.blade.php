@@ -71,6 +71,10 @@
                 </div>
             </div>
         </div>
+        <div class="position-absolute bottom-0 end-30 mb-2 ">
+            <img src="{{ asset('images/QR.png') }}" width="70" alt="">
+            <h4>Pesan Ruang</h4>
+        </div>
     </div>
 
 </body>
