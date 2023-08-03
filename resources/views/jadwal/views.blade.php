@@ -14,32 +14,56 @@
 
     <style>
         body {
-            background-image: url("{{ asset('images/Switzerland.png') }}");
+            background-image: url("{{ asset('images/DSC03913.JPG') }}");
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
         }
+
+        .position-absolute.top-0.start-0 {
+            left: 0;
+            top: 0;
+        }
+
+        .position-absolute.top-0.end-0 {
+            right: 0;
+            top: 0;
+        }
+
+        @media (max-width: 767px) {
+
+            .position-absolute.top-0.start-0,
+            .position-absolute.top-0.end-0 {
+                position: relative;
+                top: auto;
+                left: auto;
+                right: auto;
+                bottom: auto;
+                max-width: 100%;
+            }
+        }
     </style>
+
 </head>
 
 
 <body>
-
-
     <div class="container">
-        <div class="mt-3"><br>
+        <div class="mt-3 "><br>
             <div class="position-relative mt-3">
                 <img class="position-absolute top-0 start-0" src="{{ asset('images/1 Logo BBWS SO -3D.png') }}"
-                    alt="" width="200">
+                    alt="" width="190" style="max-width: 100%;">
                 <img class="position-absolute top-0 end-0" src="{{ asset('images/Logo_PUPR.png') }}" alt=""
-                    width="250">
+                    width="195" style="max-width: 100%;">
             </div>
-
+            <div class="d-flex justify-content-center col-md-12 mt-3 mb-3">
+                <label for="" class=""> <br> <br>
+                    <h1 class="text-center text-white-1 text-black">Agenda Penggunaan Ruang Rapat <br></h1>
+                </label>
+            </div>
             <div class="table-responsive-sm mt-3">
                 <table class="table table-striped table-sm my-table table-bordered">
-                    <label for="" class="d-flex justify-content-center"> <br>
-                        <h1 class="">Agenda Penggunaan Ruang Rapat <br></h1>
-                    </label>
+
                     <thead>
                         <tr>
                             <th scope="col" class="text-center">No</th>
@@ -72,7 +96,7 @@
             </div>
         </div>
         <div class="position-absolute bottom-0 end-30 mb-2 ">
-            <img src="{{ asset('images/QR.png') }}" width="70" alt="">
+            <img src="{{ asset('images/qrcode.png') }}" width="70" alt="">
             <h4>Pesan Ruang</h4>
         </div>
     </div>
@@ -84,12 +108,12 @@
     integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
 </script>
 
-<script>
+{{-- <script>
     function redirectPage() {
         window.location.href = "http://192.168.99.24:8080/video";
     }
 
     setInterval(redirectPage, 10 * 1000);
-</script>
+</script> --}}
 
 </html>

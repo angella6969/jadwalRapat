@@ -52,8 +52,14 @@ class JadwalController extends Controller
         if ($existingJadwal) {
             return redirect('/dashboard/create')->with('fail', 'Ruang Rapat Sudah Terisi, silahkan pilih RR atau waktu yang lain ');
         } else {
+
             jadwal::create($validatedData);
-            return redirect('/dashboard')->with('success', 'Berhasil Menambahkan Agenda Rapat');
+
+            if (auth()->check()) {
+                return redirect('/dashboard')->with('success', 'Berhasil Menambahkan Agenda Rapat');
+            } else {
+                return redirect('/')->with('success', 'Berhasil Menambahkan Agenda Rapat');
+            }
         }
     }
 

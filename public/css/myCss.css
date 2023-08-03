@@ -18,5 +18,10 @@ h1 {
 }
 
 .my-table {
-    background-color: #cb7eb0; /* Ganti dengan warna latar belakang yang Anda inginkan */
+    background-color: rgb(215,220,46,0.5); /* Ganti dengan warna latar belakang yang Anda inginkan */
+}
+.text-white-1 {
+    background-color: rgba(215,220,46,0.5);
+    padding: 10px 50px;
+    border-radius: 10px;
 }

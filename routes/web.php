@@ -23,6 +23,8 @@ Route::get('/a', function () {
 
 Route::get('/', [JadwalController::class, 'index']);
 Route::get('/video', [JadwalController::class, 'show']);
+Route::get('/create', [JadwalController::class, 'create']);
+Route::post('/create', [JadwalController::class, 'store']);
 
 
 Route::get('/login', [UserController::class, 'index'])->middleware('guest')->name('login');
@@ -31,8 +33,6 @@ Route::post('/login', [UserController::class, 'authenticate']);
 Route::middleware(['auth'])->group(function () {
     Route::post('/logout', [UserController::class, 'logout']);
 
-    Route::get('/dashboard/create', [JadwalController::class, 'create']);
-    Route::post('/dashboard/create', [JadwalController::class, 'store']);
     Route::get('/dashboard/edit/{id}', [JadwalController::class, 'edit']);
     Route::post('/dashboard/edit/{jadwal}', [JadwalController::class, 'update']);
 

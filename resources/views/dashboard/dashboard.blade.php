@@ -111,7 +111,7 @@
                             </div>
                         </div>
                         <div class="card-footer d-flex align-items-center justify-content-between">
-                            <a type="button" class="btn btn-primary" href="/dashboard/create"
+                            <a type="button" class="btn btn-primary" href="/create"
                                 style="margin: 10px;   width: 150px; height: 40px;">Tambah Agenda</a>
 
                         </div>
