@@ -1,5 +1,7 @@
 @extends('layout.main')
 @section('container')
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr@4.6.9/dist/flatpickr.min.css">
+
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
         <h1 class="h2">Perencanaan Agenda Ruang Rapat</h1>
     </div>
@@ -21,8 +23,9 @@
         </div>
 
         <div class="col-md-12 col-sm-6 mb-3">
+
             <label for="">Ruang</label>
-            {{-- <select class="form-select" name="room" id="room" required>
+            <select class="form-select" name="room" id="room" required>
                 <option selected value="">Open this select menu</option>
                 <option value="RR serayu">RR serayu</option>
                 <option value="RR Opak">RR Opak</option>
@@ -30,23 +33,10 @@
                 <option value="RR Kabalai">RR Kabalai</option>
                 <option value="RR Progo">RR Progo</option>
                 <option value="RR Bribin">RR Bribin</option>
-            </select> --}}
-
-
-
-
-            <select class="form-select" name="room" id="room" required>
-                <option selected value="">Open this select menu</option>
-                <option value="RR serayu">
-                    RR Serayu
-                    <img src="{{ asset('images/1 Logo BBWS SO -3D.png') }}" alt="RR Serayu" width="30" height="30">
-                </option>
-                <option value="RR Opak">
-                    RR Opak
-                    <img src="{{ asset('images/DSC03913.JPG') }}" alt="RR Opak" width="30" height="30">
-                </option>
-                <!-- ... dan seterusnya untuk opsi-opsi lain -->
             </select>
+            {{-- <div class="mt-3">
+                <img id="previewImage" src="" alt="Preview Image" width="400" height="300"> <br>
+            </div> --}}
         </div>
         <div class="col-md-12 col-sm-6 mb-3">
             <label for="">Time</label>
@@ -81,12 +71,13 @@
 
         <div class="col-md-12 col-sm-6 mb-3">
             <label for="">Jadwal Agenda</label>
-            <input class="date-picker form-control" name="days" placeholder="dd-mm-yyyy" type="text"
+            {{-- <input class="date-picker form-control" name="days" placeholder="dd-mm-yyyy" type="text"
                 value="{{ Request::segment(2) }}" required="required" onfocus="this.type='date'"
-                onmouseover="this.type='date'" onclick="this.type='date'" onblur="this.type='text'">
+                onmouseover="this.type='date'" onclick="this.type='date'" onblur="this.type='text'"> --}}
 
-            {{-- <input class="form-control flatpickr" name="days" placeholder="dd-mm-yyyy" type="text"
-                value="{{ Request::segment(2) }}" required="required"> --}}
+            <input class="form-control flatpickr" type="text" name="days" placeholder="Pilih tanggal"
+                required>
+
 
         </div>
 
@@ -134,11 +125,13 @@
             });
         });
     </script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr@4.6.9/dist/flatpickr.min.js"></script>
     <script>
         const datePickers = document.querySelectorAll('.flatpickr');
         datePickers.forEach(datePicker => {
             flatpickr(datePicker, {
-                dateFormat: "d-m-Y", // Format tanggal yang diinginkan
+                enableTime: false, // Aktifkan memilih waktu
+                dateFormat: "Y-m-d", // Format tanggal dan waktu
             });
         });
     </script>
