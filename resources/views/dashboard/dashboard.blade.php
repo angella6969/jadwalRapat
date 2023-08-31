@@ -8,7 +8,7 @@
 @Section('container')
     <style>
         body {
-            background-image: url("{{ asset('images/Switzerland.png') }}");
+            background-image: url("{{ asset('images/DSC03913.JPG') }}");
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
@@ -37,10 +37,14 @@
                 </svg>
             </a>
 
-            <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
-                <li><a href="/" class="nav-link px-2 link-dark">Home</a></li>
-                <li><a href="/video" class="nav-link px-2 link-dark">Video</a></li>
-            </ul>
+            {{-- <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0"> --}}
+                <nav>
+                    <a href="/" class="nav-link px-2 link-dark">Home</a>
+                    <a href="/video" class="nav-link px-2 link-dark">Video</a>
+                </nav>
+                {{-- <li><a href="/" class="nav-link px-2 link-dark">Home</a></li>
+                <li><a href="/video" class="nav-link px-2 link-dark">Video</a></li> --}}
+            {{-- </ul> --}}
 
             <div class="col-md-3 text-end">
                 <form action="/logout" method="post">
@@ -57,7 +61,7 @@
 
                 {{-- View Table User --}}
                 <div class="col-xl-8 col-md-6 mb-2">
-                    <div class="card bg-secondary text-white  h-100">
+                    <div class="card my-table1 text-white  h-100">
                         <div class="card-body">
                             <h2>Daftar Agenda Rapat</h2>
                             {{-- <h3>{{ $users->count() }}</h3> --}}
@@ -121,12 +125,12 @@
 
                 {{-- View Table Category --}}
                 <div class="col-xl-4 col-md-6 mb-2">
-                    <div class="card bg-success text-white  h-100">
+                    <div class="card my-table2 text-black  h-100">
                         <div class="card-body">
                             <h2>Daftar Video</h2>
                             {{-- <h3>{{ $categories->count() }}</h3> --}}
                             <div class="table-responsive mt-3">
-                                <table class="table text-white  table-sm">
+                                <table class="table text-black  table-sm">
                                     <thead>
                                         <tr class="text-center">
                                             <th scope="col">No</th>

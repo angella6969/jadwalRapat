@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
     <title>Meeting Room Schedule </title>
+    <link href="{{ asset('css/font.css') }}" rel="stylesheet">
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
@@ -58,7 +59,11 @@
             </div>
             <div class="d-flex justify-content-center col-md-12 mt-3 mb-3">
                 <label for="" class=""> <br> <br>
-                    <h1 class="text-center text-white-1 text-black">Agenda Penggunaan Ruang Rapat <br></h1>
+                    <h1 class="text-center text-white-1 text-black" style="font-family: 'CustomFont'">Agenda Penggunaan Ruang Rapat <br></h1>
+                    {{-- <p style="font-family: 'CustomFont'">Ini adalah teks yang menggunakan font kustom.</p>
+                    <p style="sans-serif;">Ini adalah teks yang menggunakan font kustom.</p>
+                    <p>Ini adalah teks yang menggunakan font kustom.</p> --}}
+
                 </label>
             </div>
             <div class="table-responsive-sm mt-3">

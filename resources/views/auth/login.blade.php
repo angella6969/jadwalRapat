@@ -79,8 +79,7 @@
                             <br /><br />
                             <div>
                                 <a class="btn btn-link" href="#">
-                                    <img class="img-thumbnail"
-                                        src={{ asset('images\LOGO_SISDA.png') }}
+                                    <img class="img-thumbnail" src={{ asset('images\LOGO_SISDA.png') }}
                                         alt="LOGO SISDA.png">
                                 </a>
                                 <p>Sistem Informasi Sumber Daya Air</p>

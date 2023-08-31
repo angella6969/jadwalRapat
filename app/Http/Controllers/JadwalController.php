@@ -9,6 +9,7 @@ use App\Models\url;
 use Carbon\Carbon;
 
 use Illuminate\Support\Facades\DB;
+use PhpParser\Node\Stmt\TryCatch;
 
 class JadwalController extends Controller
 {
@@ -43,23 +44,49 @@ class JadwalController extends Controller
             'room' => 'required',
             'time' => 'required',
         ]);
+        DB::beginTransaction();
 
-        $existingJadwal = jadwal::where('days', $validatedData['days'])
-            ->where('time', $validatedData['time'])
-            ->where('room', $validatedData['room'])
-            ->first();
+        // $existingJadwal = jadwal::where('days', $validatedData['days'])
+        //     ->where('time', $validatedData['time'])
+        //     ->where('room', $validatedData['room'])
+        //     ->first();
 
-        if ($existingJadwal) {
-            return redirect('/dashboard/create')->with('fail', 'Ruang Rapat Sudah Terisi, silahkan pilih RR atau waktu yang lain ');
-        } else {
+        $selectedTime = $validatedData['time'];
+        $selectedRoom = $validatedData['room'];
 
-            jadwal::create($validatedData);
-
-            if (auth()->check()) {
-                return redirect('/dashboard')->with('success', 'Berhasil Menambahkan Agenda Rapat');
-            } else {
-                return redirect('/')->with('success', 'Berhasil Menambahkan Agenda Rapat');
+        if ($selectedTime === 'fullday') {
+            $existingJadwal = jadwal::where('days', $validatedData['days'])
+                ->where('room', $selectedRoom)
+                ->first();
+            if ($existingJadwal) {
+                // Jika ada jadwal yang menggunakan ruangan pada hari yang sama
+                return redirect('/create')->with('fail', 'Ruang Rapat Sudah Dipesan, silahkan pilih RR atau waktu yang lain ');
             }
+        } else {
+            $existingJadwal = jadwal::where('days', $validatedData['days'])
+                ->where(function ($query) use ($selectedTime, $selectedRoom) {
+                    $query->where('time', $selectedTime)
+                        ->orWhere('room', $selectedRoom);
+                })
+                ->first();
+        }
+
+        try {
+            if ($existingJadwal) {
+                return redirect('/create')->with('fail', 'Ruang Rapat Sudah Terisi, silahkan pilih RR atau waktu yang lain ');
+            } else {
+
+                jadwal::create($validatedData);
+                DB::commit();
+
+                if (auth()->check()) {
+                    return redirect('/dashboard')->with('success', 'Berhasil Menambahkan Agenda Rapat');
+                } else {
+                    return redirect('/')->with('success', 'Berhasil Menambahkan Agenda Rapat');
+                }
+            }
+        } catch (\Throwable $th) {
+            DB::rollback();
         }
     }
 
