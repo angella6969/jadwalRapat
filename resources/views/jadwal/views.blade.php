@@ -50,8 +50,8 @@
 
 <body>
     <div class="container">
-        <div class="mt-3 "><br>
-            <div class="position-relative mt-3">
+        <div class="">
+            <div class="position-relative">
                 <img class="position-absolute top-0 start-0" src="{{ asset('images/1 Logo BBWS SO -3D.png') }}"
                     alt="" width="190" style="max-width: 100%;">
                 <img class="position-absolute top-0 end-0" src="{{ asset('images/Logo_PUPR.png') }}" alt=""

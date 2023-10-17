@@ -14,7 +14,7 @@ class DashboardController extends Controller
     public function index()
     {
         return view('dashboard.dashboard', [
-            'jadwal' => jadwal::latest()->paginate(10),
+            'jadwal' => jadwal::orderBy('days', 'asc')->paginate(10),
             'videoID' => url::latest()->paginate(10)
         ]);
     }

@@ -18,10 +18,25 @@ class JadwalController extends Controller
      */
     public function index()
     {
+
+        $timezone = 'Asia/Jakarta';
+        $now = Carbon::now($timezone);
         return view('jadwal.views', [
-            'jadwal' => jadwal::where('days', '>', Carbon::now())
-                ->paginate(15)
+            'jadwal' => jadwal::where('days', '>=', $now->format('Y-m-d'))
+                ->orderBy('days', 'asc')
+                ->paginate(10)
         ]);
+
+
+
+        // // Mengambil data jadwal yang memiliki tanggal ('days') lebih besar atau sama dengan waktu saat ini.
+        // $jadwal = DB::table('jadwal')
+        //     ->where('days', '>=', $now->format('Y-m-d')) // Menggunakan format 'Y-m-d' untuk membandingkan tanggal.
+        //     ->orderBy('days', 'asc')
+        //     ->paginate(10);
+
+        // // Mengirim data jadwal ke view 'jadwal.views'.
+        // return view('jadwal.views', compact('jadwal'));
     }
 
     /**

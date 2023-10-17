@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/a', function () {
-    return view('jadwal/video');
+    return view('jadwal/newView');
 });
 
 Route::get('/', [JadwalController::class, 'index']);
